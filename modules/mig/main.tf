@@ -65,6 +65,8 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     metric                     = ["${var.autoscaling_metric}"]
     load_balancing_utilization = ["${var.autoscaling_lb}"]
   }
+
+  depends_on = ["google_compute_region_instance_group_manager.mig"]
 }
 
 resource "google_compute_health_check" "http_healthcheck" {
